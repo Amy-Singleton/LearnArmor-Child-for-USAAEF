@@ -152,7 +152,7 @@ function learnarmor_scripts() {
 	//Google Font Martel
 	wp_enqueue_style( 'learnarmor-martel-google-fonts', 'https://fonts.googleapis.com/css?family=Martel:400,300,600,700,800' );
 	//jQuery Script 1.11.3
-	wp_enqueue_script( 'learnarmor-jquery-script', get_template_directory_uri() . '/js/jquery-1.11.3.js', array(), '20151210', true );
+	//wp_enqueue_script( 'learnarmor-jquery-script', get_template_directory_uri() . '/js/jquery-1.11.3.js', array(), '20151210', true );
 	//wp_enqueue_script( 'learnarmor-jquery-script', get_template_directory_uri() . '/js/jquery-1.11.3.min.js', array(), '20151210', true );
 	//Bootstrap Script
 	wp_enqueue_script( 'learnarmor-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.js', array(), '20170928', true );
@@ -316,9 +316,9 @@ jQuery(document).ready(function($) {
 	$('.products').find('a').on('focus blur', function(){
 		$('this').parents('ul','li').attr('tabindex', '0');
 	});
-	$('h1, h2, h3, h4, h5, h6').attr('tabindex', '0');
-	$('p').attr('tabindex', '0');
-	$('section').attr('tabindex', '0');
+	//$('h1, h2, h3, h4, h5, h6').attr('tabindex', '0');
+	//$('p').attr('tabindex', '0');
+	//$('section').attr('tabindex', '0');
 	if ($(window).width() <= 800) {
 			
 			$('#header-menus').removeClass('in');
@@ -416,15 +416,11 @@ if ( is_plugin_active( 'revslider/revslider.php' ) ) {
 	}
 }
 /* Add a link to featured images */
-add_filter( 'post_thumbnail_html', 'learnarmor_link_post_image_html', 10, 3 );
-function learnarmor_link_post_image_html( $html, $post_id, $post_image_id ) {
-	if (class_exists( 'SFWD_LMS' ) && !is_singular('sfwd-courses')){
-		$html = '<div class="post-thumbnail"><a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a></div>';
-		return $html;
-	} else {
-		$html = '<div class="post-thumbnail">' . $html . '</div>';
-		return $html;
-	}
+add_filter( 'post_thumbnail_html', 'link_post_image_html', 10, 3 );
+function link_post_image_html( $html, $post_id, $post_image_id ) {
+
+  $html = '<a href="' . get_permalink( $post_id ) . '" title="' . esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
+  return $html;
 }
 
 
@@ -448,12 +444,5 @@ if ( is_plugin_active( 'js_composer/js_composer.php' ) ) {
 	}
 }
 
-/**
- * Enables the Excerpt meta box in post type edit screen.
- */
-function wpcodex_add_excerpt_support_for_post() {
-    add_post_type_support( 'sfwd-courses', 'excerpt' );
-}
-add_action( 'init', 'wpcodex_add_excerpt_support_for_post' );
 
 ?>

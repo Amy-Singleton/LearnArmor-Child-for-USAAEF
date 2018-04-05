@@ -25,10 +25,10 @@
 				?>
 			</div><!-- footer-sidebar -->
 		</div><!-- footer-widgets -->
-		<div id="footer" class="col-sm-6 copyright">
+		<div id="footer" class="col-sm-12 copyright">
 			<p>Copyright &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'title' ); ?> <span id="copyright-message"><?php echo get_theme_mod( 'havawebsite_footer_copyright_text' ); ?></span></p>
 		</div><!-- #footer -->
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'footer-links') ); ?>
 		</div><!-- col-sm-12 -->
 	</footer><!-- #colophon -->

@@ -6,9 +6,8 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package learnarmor-child
+ * @package learnarmor
  */
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -16,7 +15,6 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-
 	<?php wp_head(); ?>
 </head>
 
@@ -26,44 +24,32 @@
 <header id="masthead" class="site-header">
 	<nav class="navbar navbar-default" role="navigation">
 		<div>
-		  <!-- Brand and toggle get grouped for better mobile display -->
-		  <div class="navbar-header">
-		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-menus">
-		      <span class="sr-only">Toggle navigation</span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		    </button>
-		    <div class="navbar-brand">
-			      <?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-			  </div>
-		  </div>
-		  <script>
-jQuery(document).ready(function($) {
-    $(window).scroll(function () {
-        if ($(window).width() > 768) { 
-            $('#header-menus').addClass('collapse');
-        }
-        else{
-            $('#header-menus').addClass('in');
-        }
-    });
-});
-</script>
-		  <div id="header-menus" class="">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				<?php
+			       
+			       if ( the_custom_logo()) : 
+					the_custom_logo();  
+			        else : ?>
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			       <?php
+			       endif;
+       
+			       $description = get_bloginfo( 'description', 'display' );
+			       if ( $description || is_customize_preview() ) : ?>
+				       <p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+			       <?php
+			       endif; ?>
+		        </div>
+			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-menus">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div id="header-menus" class="collapse in">
 	      	      <?php
 			  wp_nav_menu( array(
 			      'menu'              => 'login',
@@ -96,4 +82,3 @@ jQuery(document).ready(function($) {
 	
 
 	<div id="content" class="site-content">
-
