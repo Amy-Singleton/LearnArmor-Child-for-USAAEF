@@ -133,7 +133,7 @@ function learnarmor_widgets_init() {
 		'description' => 'The footer widget area appears at the bottom of the website. It is designed to use four widgets.',
 		'before_widget' => '<aside id="%1$s" class="col-sm-3 widget %2$s" tabindex="0">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h2 class="widget-title" tabindex="0">',
+		'before_title' => '<h2 class="widget-title">',
 		'after_title' => '</h2>',
 	) );
 }
@@ -307,7 +307,6 @@ function learnarmor_custom_head() {
  
 <script>
 jQuery(document).ready(function($) {
-	$('.search-form').attr('tabindex', '0');
 	$('.menu-form-search').on('focus', function(){
 		$('#header-search').addClass('collapse in');
 		$('#header-search').css('display', 'block');
@@ -319,9 +318,6 @@ jQuery(document).ready(function($) {
 	$('.products').find('a').on('focus blur', function(){
 		$('this').parents('ul','li').attr('tabindex', '0');
 	});
-	//$('h1, h2, h3, h4, h5, h6').attr('tabindex', '0');
-	//$('p').attr('tabindex', '0');
-	//$('section').attr('tabindex', '0');
 	if ($(window).width() <= 800) {
 			
 			$('#header-menus').removeClass('in');
