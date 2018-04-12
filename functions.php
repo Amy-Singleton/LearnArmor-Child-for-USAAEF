@@ -111,7 +111,7 @@ function learnarmor_widgets_init() {
 		'description'   => esc_html__( 'Add widgets here.', 'learnarmor' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s" tabindex="0">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title" tabindex="0">',
+		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
         //Learndash sSidebar Widget Area
@@ -120,9 +120,9 @@ function learnarmor_widgets_init() {
                     'name' => __( 'LearnDash Widgets', 'learnarmor-child' ),
                     'id' => 'ld-sidebar',
                     'description' => __( 'Custom LearnDash Sidebar', 'learnarmor-child' ),
-                    'before_widget' => '<section id="%1$s" class="widget %2$s" tabindex="0">',
+                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
                     'after_widget'  => '</section>',
-                    'before_title'  => '<h2 class="widget-title" tabindex="0">',
+                    'before_title'  => '<h2 class="widget-title">',
                     'after_title'   => '</h2>',
                 )
         );
@@ -133,8 +133,8 @@ function learnarmor_widgets_init() {
 		'description' => 'The footer widget area appears at the bottom of the website. It is designed to use four widgets.',
 		'before_widget' => '<aside id="%1$s" class="col-sm-3 widget %2$s" tabindex="0">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title" tabindex="0">',
-		'after_title' => '</h3>',
+		'before_title' => '<h2 class="widget-title" tabindex="0">',
+		'after_title' => '</h2>',
 	) );
 }
 add_action( 'widgets_init', 'learnarmor_widgets_init' );
@@ -166,7 +166,10 @@ function learnarmor_scripts() {
 add_action( 'wp_enqueue_scripts', 'learnarmor_scripts' );
 
 // Register Custom Navigation Walker
-require_once get_template_directory() . '/wp-bootstrap-navwalker.php';
+function load_parent_walker(){
+	require_once get_template_directory() . '/wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'load_parent_walker' );
 /**
  * Implement the Custom Header feature.
  */
