@@ -49,7 +49,7 @@ class HavaWebsiteScroll_Widget extends WP_Widget {
      */
     public function widget( $args, $instance ) {    
     ?>    
-        <a href="#" class="back-to-top">
+        <a href="#" class="back-to-top" aria-label="back to top">
             <span class="glyphicon glyphicon-circle-arrow-up"></span>
         </a>
 
