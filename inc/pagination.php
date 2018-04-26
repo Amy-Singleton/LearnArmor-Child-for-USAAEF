@@ -7,7 +7,7 @@ function learnarmor_content_nav(){
 	// Sets how many pages to show (leave it alone)
 	$pages = '';
 	// Sets how many buttons you want to show in the pagination area
-	$range = 5;
+	$range = 3;
 	
 
 	$showitems = ($range * 2)+1;  
@@ -29,7 +29,7 @@ function learnarmor_content_nav(){
 	{
 		echo '<div class="col-sm-12"><ul class="pagination">';
 		if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo '<li><a href="'.get_pagenum_link(1).'">&laquo;</a></li>';
-		if($paged > 1 && $showitems < $pages) echo '<li>' . previous_posts_link('&laquo; Previous Entries') . '</li>';
+		if($paged > 1 && $showitems < $pages) echo '<li>' . previous_posts_link('&laquo; Previous', 0) . '</li>';
 
 		for ($i=1; $i <= $pages; $i++)
 		{
@@ -39,8 +39,8 @@ function learnarmor_content_nav(){
 			}
 		}
 
-		if ($paged < $pages && $showitems < $pages) echo '<li>' . next_posts_link('Next &raquo;','') . '</li>';  
-		if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo '<li><a href="'.get_pagenum_link($pages).'">&raquo;</a></li>';
+		if ($paged < $pages && $showitems < $pages) echo next_posts_link('Next &raquo;',0);  
+if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo '<a href="'.get_pagenum_link($pages).'">&raquo;</a>';		
 		echo '</ul></div>';
 	}
 }

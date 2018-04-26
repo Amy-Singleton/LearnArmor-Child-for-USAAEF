@@ -1145,29 +1145,37 @@ a:focus {
 ## Pagination - Original work at http://www.kriesi.at/archives/how-to-build-a-wordpress-post-pagination-without-plugin
 --------------------------------------------------------------*/
 ul.pagination {
-	margin: 0 0.75em .5em;
+	margin: 0 0.75em 3.5em;
 	float: right;
 }
-
-.pagination li {
+ul.pagination a {
 	float: left;
 	vertical-align: middle;
 	background-color: #FFFFFF;
 	margin-right: .5em;
 	margin-bottom: 10px;
+	border: 1px #DDD solid;
+	padding: 5px 12px;
 }
-
-.pagination ul li a {
+.pagination li a {
+	float: left;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	margin-right: .5em;
+	margin-bottom: 10px;
 	cursor: pointer;
 }
-.pagination .current {
+.pagination li.current {
 	padding: 5px 12px;
-	color: #3366FF;
-	color:rgb(51, 102, 255);
+	/* color: #3366FF; */
+	color: rgb(51, 102, 255);
 	background-color: #EEE;
 	border: 1px #DDD solid;
+	display: inline=b;
+	float: left;
+	margin-right: 10px;
 }
-
+ul.pagination a
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
