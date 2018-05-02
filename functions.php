@@ -269,16 +269,15 @@ add_filter('the_excerpt','learnarmor_add_class_to_excerpt');
 /**
  * Modify the Serach Form Results if not on an Admin page.
  */
-if ( ! is_admin() ) {
-	function learnarmor_search_filter($query) {
-	//Without Courses
-	if ($query->is_search) {
-		$query->set('post_type', array('post', 'page'));
-	}
-	return $query;
-	}
-	add_filter('pre_get_posts','learnarmor_search_filter');
-} 
+function learnarmor_search_filter($query) {
+  if ( !is_admin() && $query->is_main_query() ) {
+    if ($query->is_search) {
+      $query->set('post_type', array( 'post','sfwd-courses' ) );
+    }
+  }
+}
+
+add_action('pre_get_posts','learnarmor_search_filter'); 
 
 /**
  * Add the Serach Form to the Primary Menu

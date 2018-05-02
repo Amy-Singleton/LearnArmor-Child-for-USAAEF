@@ -55,11 +55,11 @@ function learnarmor_infinite_scroll_render() {
 
 function learnarmor_jetpackme_exclude_related_post( $exclude_post_ids, $post_id ) {
     // $post_id is the post we are currently getting related posts for
-    $exclude_post_ids[] = 139; // Exclude post_id 1037
+    //$exclude_post_ids[] = 139; // Exclude post_id 1037
     //$exclude_post_ids[] = 1038; // Also exclude post_id 1038
     return $exclude_post_ids;
 }
-add_filter( 'jetpack_relatedposts_filter_exclude_post_ids', 'learnarmor_jetpackme_exclude_related_post', 20, 2 );
+//add_filter( 'jetpack_relatedposts_filter_exclude_post_ids', 'learnarmor_jetpackme_exclude_related_post', 20, 2 );
 function learnarmor_jetpack_add_pages_to_related( $post_type, $post_id ) {
     if ( is_array( $post_type ) ) {
         $search_types = $post_type;

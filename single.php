@@ -28,9 +28,10 @@ get_header(); ?>
 				$custom_likes = new Jetpack_Likes;
 				echo $custom_likes->post_likes( '' );
 			}
-
-			if ( !is_singular( array( 'sfwd-lessons' ) ) || is_singular( array( 'posts', 'product', 'sfwd-courses' ) ) || get_post_type( get_the_ID() ) == 'sfwd-courses' && class_exists( 'Jetpack_RelatedPosts' ) ) {
-			    echo do_shortcode( '[jetpack-related-posts]' );
+			if (class_exists( 'SFWD_LMS')) { 
+				if ( !is_singular( array( 'sfwd-lessons' ) ) || is_singular( array( 'posts', 'product', 'sfwd-courses' ) ) || get_post_type( get_the_ID() ) == 'sfwd-courses' && class_exists( 'Jetpack_RelatedPosts' ) ) {
+				    echo do_shortcode( '[jetpack-related-posts]' );
+				}
 			}
 
                    the_post_navigation();
@@ -44,9 +45,8 @@ get_header(); ?>
 		?>
 
 		</main><!-- #main -->
-	</div><!-- #primary -->
 <?php
-if ( get_post_type( get_the_ID() ) == 'sfwd-courses' || get_post_type( get_the_ID() ) == 'sfwd-lessons'|| get_post_type( get_the_ID() ) == 'sfwd-topics' ) {
+if ( get_post_type( get_the_ID() ) == 'sfwd-courses' || get_post_type( get_the_ID() ) == 'sfwd-lessons' || get_post_type( get_the_ID() ) == 'sfwd-topics' || get_post_type( get_the_ID() ) == 'sfwd-quiz' ) {
     //if is true
 	if ( is_active_sidebar( 'ld-sidebar' ) ) : ?>
 	<div id="course-sidebar" class="widget-area col-sm-3" role="complementary">
@@ -57,4 +57,7 @@ if ( get_post_type( get_the_ID() ) == 'sfwd-courses' || get_post_type( get_the_I
 else {
 	get_sidebar();
 }
+?>
+</div><!-- #primary -->
+<?php
 get_footer();
