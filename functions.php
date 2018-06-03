@@ -368,10 +368,13 @@ if ( is_plugin_active( 'sfwd-lms/sfwd_lms.php' ) ) {
 	 */
 	add_action('admin_menu', 'learnarmor_hide_pages_from_group_leader', 999);
 	function learnarmor_hide_pages_from_group_leader() {
-		if( !current_user_can('administrator') && current_user_can('group_leader')) { 
+		if( !current_user_can('administrator') && current_user_can('group_leader') || current_user_can('subscriber') || current_user_can('Participant')) { 
 			remove_menu_page( 'edit-comments.php' );                                        //Comments
+			remove_menu_page( 'jetpack' );                                        		//JetPack
+			remove_menu_page( 'index.php' );                                        	//Dashboard
 			remove_menu_page( 'options-general.php' );                                      //Settings
 			remove_menu_page( 'ipt_fsqm_dashboard' );                                       //eForm
+			remove_menu_page( 'gf_edit_forms' );	                                        //Gravity Form
 			remove_menu_page( 'edit.php' );                                                 //Posts
 			remove_menu_page( 'upload.php' );                                               //Media
 			remove_menu_page( 'edit.php?post_type=page' );                                  //Pages
@@ -395,6 +398,33 @@ if ( is_plugin_active( 'sfwd-lms/sfwd_lms.php' ) ) {
 			}
 		}
 	}
+}
+function learnarmor_remove_dashboard_widgets() {
+    	global $wp_meta_boxes;
+	// wp..
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+	// eForms
+	unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
+	// jetpack
+	unset($wp_meta_boxes['dashboard']['normal']['core']['jetpack_summary_widget']);
+	// bbpress
+	unset($wp_meta_boxes['dashboard']['normal']['core']['bbp-dashboard-right-now']);
+	// yoast seo
+	unset($wp_meta_boxes['dashboard']['normal']['core']['yoast_db_widget']);
+	// gravity forms
+	unset($wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard']);
+ 
+}
+if( !current_user_can('administrator') && current_user_can('group_leader') || current_user_can('subscriber') || current_user_can('Participant')) {
+    add_action('wp_dashboard_setup', 'learnarmor_remove_dashboard_widgets', 11 );
 }
 //Remove unessary toolbar nodes
 add_action( 'admin_bar_menu', 'learnarmor_remove_toolbar_nodes', 999 );
